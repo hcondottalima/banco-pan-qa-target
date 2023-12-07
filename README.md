@@ -8,7 +8,8 @@
 Importante lembrar de criar um arquivo `.env` e preencher com as variáveis de ambiente conforme indicado no arquivo `.env.example`
 
 ## Rotas
+> Troque as `_?_` pelos **Ids**
+> 
 - `GET`: http://localhost:3001/activities/_?_/
 - `GET`: http://localhost:3001/offers/_?_/
 
-* Troque as `_?_` pelos Ids
