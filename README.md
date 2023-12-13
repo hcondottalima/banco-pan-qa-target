@@ -1,6 +1,6 @@
 ## Iniciando
 1. Clone o repositório
-2. Instale as dependências com `npm i`
+2. Instale as dependências dentro de cada diretório, com `npm i`
 4. Informe as variáveis de ambiente
 3. Inicie o servidor com `npm run dev`
 
