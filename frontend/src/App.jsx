@@ -39,6 +39,9 @@ function App() {
               {activity.options.map((offer, idx) => 
                 <div key={idx}>
                   <OfferCard offer={offer} />
+                  {/* <pre className='pre'>
+                    {JSON.stringify(offer.details, null, 2)}
+                  </pre> */}
                   <ViewJsonButton offer={offer} />
                 </div>
               )}

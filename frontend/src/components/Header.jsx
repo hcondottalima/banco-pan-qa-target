@@ -15,7 +15,7 @@ export default function Header(props) {
   return (
     <>
       <header>
-        <h1>LCGBR + BANCO PAN</h1>
+        <h1>QA de Spaces (LCGBR + Banco Pan)</h1>
         <button  type="button" onClick={() => setIsVisible(true)}>
           Informar Token
         </button>
