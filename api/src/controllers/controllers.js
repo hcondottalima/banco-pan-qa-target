@@ -77,11 +77,20 @@ async function getAllSpaceContentSimplified(req, res) {
 
     const activityPromises = activitiesIds.map(async (activityId) => {
       const response = await services.fetchActivityAPI(activityId);
+
+      if(response.error_code && response.error_code === '401013') {
+        return response;
+      } 
+
       const { id, name, state, priority, options } = response;
       return { id, name, state, priority, options };
     });
 
     const activitiesResponses = await Promise.all(activityPromises);
+
+    if(activitiesResponses[0].error_code && activitiesResponses[0].error_code === '401013') {
+      return res.status(401).json({status: 401, ...activitiesResponses[0]});
+    } 
 
     const spaceContent = [];
 

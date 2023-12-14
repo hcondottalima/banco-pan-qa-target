@@ -9,13 +9,20 @@ import Header from './components/Header';
 function App() {
   const [selectedSpace, setSelectedSpace] = useState('dashResumo');
   const [jwtToken, setJwtToken] = useState('');
+  const [tokenError, setTokenError] = useState(false);
   const [spaceData, setSpaceData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
   const getSpaceContent = async () => {
+    setTokenError(false);
     setIsLoading(true);
     const response = await fetchSpaceContent(selectedSpace);
-    setSpaceData(response);
+    if (response.status && response.status === 401) {
+      setTokenError(true);
+      setSpaceData([]);
+    } else {
+      setSpaceData(response);
+    }
     setIsLoading(false);
   };
 
@@ -31,6 +38,7 @@ function App() {
         selectedSpace={selectedSpace}
         setSelectedSpace={setSelectedSpace}
       />
+      {tokenError && <p className='token-error'>Ops! Algo deu errado :(<br/>Parece que o token fornecido é inválido ou expirou.</p>}
       {isLoading ? <Loading /> : (
         <main className="activity">
           {spaceData.map((activity, index) =>
