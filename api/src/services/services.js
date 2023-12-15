@@ -16,6 +16,13 @@ async function fetchAPI(url, token = accessToken) {
   return response.json();
 }
 
+async function fetchActivitiesAPI() {
+  const url = `https://mc.adobe.io/${tenantId}/target/activities`;
+  const response = await fetchAPI(url);
+
+  return response;
+}
+
 async function fetchActivityAPI(activityId) {
   const url = `https://mc.adobe.io/${tenantId}/target/activities/xt/${activityId}`;
   const response = await fetchAPI(url);
@@ -32,6 +39,7 @@ async function fetchOfferAPI(offerId) {
 
 module.exports = {
   fetchAPI,
+  fetchActivitiesAPI,
   fetchActivityAPI,
   fetchOfferAPI,
 };

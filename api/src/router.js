@@ -4,6 +4,9 @@ const express = require('express');
 const router = express.Router();
 
 // ROTA PARA PEGAR AS ATIVIDADES
+router.get('/activities/', controllers.getActivities);
+
+// ROTA PARA PEGAR AS ATIVIDADES
 router.get('/activities/:activityId', controllers.getActivity);
 
 // ROTA PARA PEGAR AS OFERTAS

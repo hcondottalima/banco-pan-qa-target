@@ -10,3 +10,16 @@ export async function fetchSpaceContent(space) {
     return [];
   }
 }
+
+export async function fetchOffer(offerId) {
+  try {
+    const url = `http://localhost:3001/offers/${offerId}`;
+    const response = await fetch(url);
+    const data = await response.json();
+
+    return data;
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+}

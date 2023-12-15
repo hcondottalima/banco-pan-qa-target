@@ -3,8 +3,9 @@ import { fetchSpaceContent } from '../src/utils/api';
 import OfferCard from './components/OfferCard';
 import ViewJsonButton from './components/ViewJsonButton';
 import Loading from './components/Loading';
-import './styles/App.css';
 import Header from './components/Header';
+// import GlobalStyles from './styles/GlobalStyles';
+import './styles/App.css';
 
 function App() {
   const [selectedSpace, setSelectedSpace] = useState('dashResumo');
@@ -32,31 +33,34 @@ function App() {
 
   return (
     <>
+      {/* <GlobalStyles /> */}
       <Header
         jwtToken={jwtToken}
         setJwtToken={setJwtToken}
         selectedSpace={selectedSpace}
         setSelectedSpace={setSelectedSpace}
       />
-      {tokenError && <p className='token-error'>Ops! Algo deu errado :(<br/>Parece que o token fornecido é inválido ou expirou.</p>}
-      {isLoading ? <Loading /> : (
-        <main className="activity">
-          {spaceData.map((activity, index) =>
-            <section key={index}>
-              <h3>{activity.name}</h3>
-              {activity.options.map((offer, idx) => 
-                <div key={idx}>
-                  <OfferCard offer={offer} />
-                  {/* <pre className='pre'>
-                    {JSON.stringify(offer.details, null, 2)}
-                  </pre> */}
-                  <ViewJsonButton offer={offer} />
-                </div>
-              )}
-            </section>
-          )}
-        </main >
-      )}
+      <main className='main-container'>
+        {tokenError && <p className='token-error'>Ops! Algo deu errado :(<br/>Parece que o token fornecido é inválido ou expirou.</p>}
+        {isLoading ? <Loading /> : (
+          <div className="activity">
+            {spaceData.map((activity, index) =>
+              <section key={index}>
+                <h3>{activity.name}</h3>
+                {activity.options.map((offer, idx) => 
+                  <div className="main-box" key={idx}>
+                    <OfferCard offer={offer} />
+                    {/* <pre className='pre'>
+                      {JSON.stringify(offer.details, null, 2)}
+                    </pre> */}
+                    <ViewJsonButton offer={offer} />
+                  </div>
+                )}
+              </section>
+            )}
+          </div >
+        )}
+      </main>
     </>
   );
 }

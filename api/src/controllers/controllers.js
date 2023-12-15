@@ -12,6 +12,17 @@ const spaces = {
   ]
 };
 
+// RETORNA LISTA DE TODAS ATIVIDADES
+async function getActivities(req, res) {
+  try {
+    const response = await services.fetchActivitiesAPI();
+
+    res.status(200).json(response);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+}
+
 // RETORNA DETALHES DE UMA ATIVIDADE
 async function getActivity(req, res) {
   try {
@@ -111,6 +122,7 @@ async function getAllSpaceContentSimplified(req, res) {
 }
 
 module.exports = {
+  getActivities,
   getActivity,
   getOffer,
   getAllSpaceContent,

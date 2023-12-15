@@ -6,16 +6,16 @@ export default function OfferCard(props) {
   const { payload } = props.offer.details.content;
 
   return (
-    <div className="box">
+    <div className="card-box">
       {payload.imagemURL
         ? (
           <img className="imagem" src={payload.imagemURL} alt="Descrição da imagem" />
         ) : (
-          <>
-            <p className="offer-title">{payload.titulo}</p>
+          <div className="box">
+            <p>{payload.titulo}</p>
             <p>{payload.subtitulo}</p>
             <p>{payload.botao}</p>
-          </>
+          </div>
         )}
     </div>
   );

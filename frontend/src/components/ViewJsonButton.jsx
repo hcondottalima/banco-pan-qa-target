@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import JSONicon from '../assets/json-icon.png';
+import LINKicon from '../assets/deep-link-icon.png';
 import '../styles/App.css';
 
 
@@ -10,9 +12,16 @@ export default function ViewJsonButton(props) {
 
   return (
     <>
-      <button type="button" onClick={() => setIsVisible(true)}>
-        Visualizar Json
-      </button>
+      <div className='icons-container'>
+        <button className="icons" type="button" onClick={() => setIsVisible(true)}>
+          <img src={JSONicon} alt="Visualizar JSON" />
+        </button>
+        <a href={details.content.payload.acao || details.content.payload.deeplink} target="_blank">
+          <button className="icons"  type="button">
+            <img src={LINKicon} alt="Acessar Deep Link" />
+          </button>
+        </a>
+      </div>
       {isVisible && (
         <main className="overlay">
           <div className="modal">
