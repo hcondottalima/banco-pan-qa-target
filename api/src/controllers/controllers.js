@@ -100,7 +100,10 @@ async function getAllSpaceContentSimplified(req, res) {
     const activitiesResponses = await Promise.all(activityPromises);
 
     if(activitiesResponses[0].error_code && activitiesResponses[0].error_code === '401013') {
-      return res.status(401).json({status: 401, ...activitiesResponses[0]});
+      return res.status(401).json({
+        status: 401,
+        message: 'Parece que o token fornecido é inválido ou expirou.'
+      });
     } 
 
     const spaceContent = [];

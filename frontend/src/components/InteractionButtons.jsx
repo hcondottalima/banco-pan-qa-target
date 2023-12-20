@@ -16,6 +16,7 @@ export default function ViewJsonButton(props) {
         <button className="icons" type="button" onClick={() => setIsVisible(true)}>
           <img src={JSONicon} alt="Visualizar JSON" />
         </button>
+        {/* eslint-disable-next-line react/jsx-no-target-blank */}
         <a href={details.content.payload.acao || details.content.payload.deeplink} target="_blank">
           <button className="icons"  type="button">
             <img src={LINKicon} alt="Acessar Deep Link" />

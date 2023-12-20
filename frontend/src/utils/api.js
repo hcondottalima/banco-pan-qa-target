@@ -7,7 +7,7 @@ export async function fetchSpaceContent(space) {
     return data;
   } catch (error) {
     console.error(error);
-    return [];
+    return {status: 500, message: 'Parece ser um erro interno do servidor. Tente recarregar a página.'};
   }
 }
 
