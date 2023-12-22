@@ -4,43 +4,65 @@ import PropTypes from 'prop-types';
 import '../styles/App.css';
 
 export default function SendTokenModal(props) {
-  const { setIsVisible } = props;
+  const { setIsVisible, getSpaceContent } = props;
 
   const [jwtToken, setJwtToken] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-
+  const [isValidToken, setIsValidToken] = useState(false);
 
   const getOffer = async () => {
     setIsLoading(true);
-    const response = await fetchOffer(617533);
+    const response = await fetchOffer(617533, jwtToken);
     if (response.status && response.status === 401) {
+      console.log(response.status);
+      setIsValidToken(false);
       console.error(response);
     } else {
-      console.log(response);
+      setIsValidToken(true);
     }
     setIsLoading(false);
+  };
+
+  const handleClose = () => {
+    localStorage.setItem('token', jwtToken);
+    setIsVisible(false);
+    if(isValidToken) {
+      getSpaceContent();
+    }
+  };
+
+  const handleChange = (event) => {
+    setIsValidToken(false);
+    setJwtToken(event.target.value);
   };
 
   return (
     <main className='overlay'>
       <div className='modal'>
-        <button className="close" type="button" onClick={() => setIsVisible(false)}>X</button>
+        <button className="close" type="button" onClick={handleClose}>X</button>
         <div className='text-area-container'>
           <textarea
             rows={16}
             cols={96}
             value={jwtToken}
             placeholder='Insira aqui seu Token JWT'
-            onChange={(event) => setJwtToken(event.target.value)}
+            onChange={handleChange}
           />
           <div className='text-area-buttons'>
             <button
+              className='validate'
               onClick={getOffer}
               disabled={(jwtToken.split('.').length !== 3)}
             >
               {isLoading ? 'Validando...' : 'Validar Token'}
             </button>
-            <button disabled>Enviar Token</button>
+            <button
+              className='send'
+              disabled={!isValidToken}
+              onClick={handleClose}
+            >
+              Enviar Token
+            </button>
           </div>
         </div>
       </div>
@@ -50,4 +72,5 @@ export default function SendTokenModal(props) {
 
 SendTokenModal.propTypes = {
   setIsVisible: PropTypes.func,
+  getSpaceContent: PropTypes.func
 }.isRequired;

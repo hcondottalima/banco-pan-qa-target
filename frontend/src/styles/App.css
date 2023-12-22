@@ -218,3 +218,23 @@ textarea {
   justify-content: center;
   gap: 16px;
 }
+
+.text-area-buttons > .validate {
+  background-color: #1a1a1a;
+  color: rgba(255, 255, 255, 0.87);
+}
+
+.text-area-buttons > .validate:disabled {
+  background-color: #242424;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.text-area-buttons > .send {
+  background-color: #1a1a1a;
+  color: #06B2FC;
+}
+
+.text-area-buttons > .send:disabled {
+  background-color: #242424;
+  color: rgba(255, 255, 255, 0.3);
+}

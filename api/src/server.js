@@ -4,8 +4,11 @@ const cors = require('cors');
 const router = require('./router');
 
 const app = express();
+app.use(cors({
+  methods: 'GET,PUT,PATCH,POST,DELETE',
+  allowedHeaders: 'Content-Type,Authorization',
+}));
 app.use(express.json());
-app.use(cors());
 app.use(router);
 
 const PORT = process.env.API_PORT;

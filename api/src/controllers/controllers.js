@@ -39,7 +39,15 @@ async function getActivity(req, res) {
 async function getOffer(req, res) {
   try {
     const { offerId } = req.params;
-    const response = await services.fetchOfferAPI(offerId);
+    const { token } = req.body;
+    const response = await services.fetchOfferAPI(offerId, token);
+
+    if(response.error_code && response.error_code === '401013') {
+      return res.status(401).json({
+        status: 401,
+        message: 'Parece que o token fornecido é inválido ou expirou.'
+      });
+    } 
 
     res.status(200).json(response);
   } catch (error) {
@@ -83,11 +91,12 @@ async function getAllSpaceContent(req, res) {
 async function getAllSpaceContentSimplified(req, res) {
   try {
     const { space } = req.params;
+    const { token } = req.body;
 
     const activitiesIds = spaces[space].map((activity) => activity.id);
 
     const activityPromises = activitiesIds.map(async (activityId) => {
-      const response = await services.fetchActivityAPI(activityId);
+      const response = await services.fetchActivityAPI(activityId, token);
 
       if(response.error_code && response.error_code === '401013') {
         return response;
@@ -110,7 +119,7 @@ async function getAllSpaceContentSimplified(req, res) {
 
     for (const activity of activitiesResponses) {
       const offersPromises = activity.options.map(async (offer) => {
-        const response = await services.fetchOfferAPI(offer.offerId);
+        const response = await services.fetchOfferAPI(offer.offerId, token);
         return { ...offer, details: response };
       });
 

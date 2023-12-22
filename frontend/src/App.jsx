@@ -14,7 +14,10 @@ function App() {
   const getSpaceContent = async () => {
     setErrorMessage('');
     setIsLoading(true);
-    const response = await fetchSpaceContent(selectedSpace);
+
+    const existingToken = localStorage.getItem('token');
+
+    const response = await fetchSpaceContent(selectedSpace, existingToken);
 
     if (response.status) {
       setErrorMessage(response.message);
@@ -35,6 +38,7 @@ function App() {
       <Header
         selectedSpace={selectedSpace}
         setSelectedSpace={setSelectedSpace}
+        getSpaceContent={getSpaceContent}
       />
       <Main
         errorMessage={errorMessage}

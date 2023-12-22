@@ -16,23 +16,23 @@ async function fetchAPI(url, token = accessToken) {
   return response.json();
 }
 
-async function fetchActivitiesAPI() {
+async function fetchActivitiesAPI(token) {
   const url = `https://mc.adobe.io/${tenantId}/target/activities`;
-  const response = await fetchAPI(url);
+  const response = await fetchAPI(url, token);
 
   return response;
 }
 
-async function fetchActivityAPI(activityId) {
+async function fetchActivityAPI(activityId, token) {
   const url = `https://mc.adobe.io/${tenantId}/target/activities/xt/${activityId}`;
-  const response = await fetchAPI(url);
+  const response = await fetchAPI(url, token);
 
   return response;
 }
 
-async function fetchOfferAPI(offerId) {
+async function fetchOfferAPI(offerId, token) {
   const url = `https://mc.adobe.io/${tenantId}/target/offers/json/${offerId}`;
-  const response = await fetchAPI(url);
+  const response = await fetchAPI(url, token);
 
   return response;
 }

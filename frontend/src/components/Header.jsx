@@ -8,7 +8,8 @@ import '../styles/App.css';
 export default function Header(props) {
   const {
     selectedSpace,
-    setSelectedSpace
+    setSelectedSpace,
+    getSpaceContent
   } = props;
 
   const [isVisible, setIsVisible] = useState(false);
@@ -34,7 +35,7 @@ export default function Header(props) {
         </div>
       </header>
 
-      {isVisible && <SendTokenModal setIsVisible={setIsVisible} />}
+      {isVisible && <SendTokenModal setIsVisible={setIsVisible} getSpaceContent={getSpaceContent}/>}
     </>
   );
 }
@@ -42,4 +43,5 @@ export default function Header(props) {
 Header.propTypes = {
   selectedSpace: PropTypes.string,
   setSelectedSpace: PropTypes.func,
+  getSpaceContent: PropTypes.func
 }.isRequired;
