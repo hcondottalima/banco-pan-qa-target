@@ -23,6 +23,7 @@ function App() {
       setErrorMessage(response.message);
       setSpaceData([]);
     } else {
+      setErrorMessage('');
       setSpaceData(response);
     }
     setIsLoading(false);
@@ -39,6 +40,7 @@ function App() {
         selectedSpace={selectedSpace}
         setSelectedSpace={setSelectedSpace}
         getSpaceContent={getSpaceContent}
+        errorMessage={errorMessage}
       />
       <Main
         errorMessage={errorMessage}

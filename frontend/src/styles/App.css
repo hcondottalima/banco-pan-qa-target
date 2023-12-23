@@ -101,6 +101,33 @@ pre.pre {
   padding: 8px 32px;  
 }
 
+.required-token {
+  box-shadow: 0 0 0 0 rgba(232, 72, 85, 1);
+	transform: scale(1);
+	animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+	0% {
+    color: #E84855;
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(232, 72, 85, 0.7);
+	}
+
+	70% {
+    color: #E84855;
+		transform: scale(1);
+		box-shadow: 0 0 0 10px rgba(232, 72, 85, 0);
+	}
+
+	100% {
+    color: #E84855;
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(232, 72, 85, 0);
+	}
+}
+
+
 header {
   display: flex;
   justify-content: space-between;

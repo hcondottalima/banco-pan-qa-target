@@ -9,7 +9,8 @@ export default function Header(props) {
   const {
     selectedSpace,
     setSelectedSpace,
-    getSpaceContent
+    getSpaceContent,
+    errorMessage
   } = props;
 
   const [isVisible, setIsVisible] = useState(false);
@@ -29,7 +30,11 @@ export default function Header(props) {
             <option value="dashResumo">Dash Resumo</option>
             <option value="homeResumo">Home Resumo</option>
           </select>
-          <button  type="button" onClick={() => setIsVisible(true)}>
+          <button 
+            className={errorMessage === 'Parece que o token fornecido é inválido ou expirou.' && 'required-token'}
+            type="button"
+            onClick={() => setIsVisible(true)
+            }>
             Informar Token
           </button>
         </div>
