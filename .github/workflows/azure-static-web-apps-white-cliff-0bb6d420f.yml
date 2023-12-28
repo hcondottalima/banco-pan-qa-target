@@ -12,7 +12,10 @@ on:
 
 # Optional: environment variables can be injected here
 # You can add these variables in your repository Settings - Secrets and variables - Actions - variables
-
+env:
+  AZURE_WEBAPP_NAME: 'qaspacestarget'
+  AZURE_WEBAPP_PACKAGE_PATH: './frontend'
+  NODE_VERSION: '20.x'
 
 # There are two jobs in this workflow - build and deploy
 jobs:
@@ -39,8 +42,8 @@ jobs:
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
-          name: /frontend
-          path: dist # This should be your distribution path, not the root path
+          name: ${{ env.AZURE_WEBAPP_NAME }}
+          path: './frontend' # This should be your distribution path, not the root path
  
  # Deploy the application to Azure
   deploy:
