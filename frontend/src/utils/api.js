@@ -1,4 +1,4 @@
-const url = 'http://localhost:3001';
+const url = 'https://qaspaceapi.azurewebsites.net';
 
 export async function fetchSpaceContent(space, token) {
   try {
