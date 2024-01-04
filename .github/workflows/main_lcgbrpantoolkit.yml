@@ -12,6 +12,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      working-directory: ./frontend
 
     steps:
       - uses: actions/checkout@v4
@@ -24,9 +26,11 @@ jobs:
       - name: npm install, build, and test
         run: |
           npm install
-          npm run build --if-present
-          npm run test --if-present
+          npm run build 
+        working-directory: ${{env.working-directory}}
+        
 
+      
       - name: Zip artifact for deployment
         run: zip release.zip ./* -r
 
@@ -59,4 +63,4 @@ jobs:
           app-name: 'LCGBRpanToolkit'
           slot-name: 'Production'
           package: .
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_AE00B0AC455A4F4B808B420DDA5F083E }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE }}

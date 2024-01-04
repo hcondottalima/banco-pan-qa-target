@@ -1,4 +1,4 @@
-const url = 'https://qaspaceapi.azurewebsites.net';
+const url = 'https://api-qa-spaces-target.onrender.com';
 
 export async function fetchSpaceContent(space, token) {
   try {
