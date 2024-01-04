@@ -32,7 +32,7 @@ jobs:
           app_location: "/api" 
           api_location: "" 
           output_location: "/dist" 
-          app_build_command: 'npm run start &'
+          app_build_command: 'nohup npm run start &'
           
     
         
